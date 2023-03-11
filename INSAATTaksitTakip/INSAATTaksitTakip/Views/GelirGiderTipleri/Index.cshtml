@@ -1,0 +1,66 @@
+﻿@using INSAATTaksitTakip.Models
+@using PagedList;
+@using PagedList.Mvc;
+@model PagedList.IPagedList<TBLGG_TIPI>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_YonetimLayout.cshtml";
+
+    string ara = "";
+    if (Request["ara"] != null)
+    {
+        ara = Request["ara"].ToString();
+    }
+}
+<script>
+
+    function Silsinmi() {
+        var sil = confirm("Silinsin mi?");
+        return sil;
+    }
+</script>
+<div class="item  col-md-9 offset-md-2 col-xs-9 offset-xs-2 col-sm-9 offset-sm-2">
+    <div id="liste" class="table-responsive ">
+        <div id="searchbar" style="margin-top:10px; margin-bottom:10px;">
+            <form id="frm1" method="post" action="~/Yonetim/GelirGiderTipleri/Ara" class="form-inline">
+                <input class="form-control mr-sm-2" id="txtAra" name="txtAra" value="@ara" type="search" placeholder="Tip adı giriniz.." aria-label="Search">
+                <button class="btn btn-secondary my-2 my-sm-0" type="submit">ARA</button>
+                <a href="~/Yonetim/GelirGiderTipleri/KayitFormu/-1" class="btn btn-outline-success">Yeni Ekle</a>
+            </form>
+        </div>
+        @{
+            <table class="table table-striped table-hover table-bordered">
+                <tr>
+                    <th>Sil</th>
+                    <th>Düzenle</th>
+                    <th>Gelir/Gider Adı</th>
+                    <th>Gelir/Gider Tipi</th>
+
+                </tr>
+                @for (int i = 0; i < Model.Count; i++)
+                {
+                    <tr>
+                        <td><a class="btn btn-danger" onclick="return Silsinmi()" href="~/Yonetim/GelirGiderTipleri/Sil/@Model[i].GG_TIPI_REFNO">SİL</a></td>
+                        <td><a class="btn btn-primary" href="~/Yonetim/GelirGiderTipleri/KayitFormu/@Model[i].GG_TIPI_REFNO">DÜZENLE</a></td>
+                        <td>@Model[i].GG_TIPI_ADI</td>
+                        @if (@Model[i].GG_TURU)
+                        {
+                            <td>Gelir/Alacak</td>
+                        }
+                        else
+                        {
+                            <td>Gider/Borç</td>
+                        }
+                    </tr>
+                }
+            </table>
+
+
+        }
+
+    </div>
+
+
+    @Html.PagedListPager((IPagedList)Model, sayfa => Url.Action("Index", new { sayfa }))
+</div>
+

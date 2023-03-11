@@ -1,0 +1,88 @@
+﻿@using INSAATTaksitTakip.Models
+@using PagedList;
+@using PagedList.Mvc;
+@model PagedList.IPagedList<TBLPROJELER>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_YonetimLayout.cshtml";
+    var sehir = ViewData["sehir"] as List<INSAATTaksitTakip.Models.TBLSEHIRLER>;
+    var ılce = ViewData["ılce"] as List<INSAATTaksitTakip.Models.TBLILCELER>;
+    string ara = "";
+    if (Request["ara"] != null)
+    {
+        ara = Request["ara"].ToString();
+    }
+}
+<script>
+    function Silsinmi() {
+        var sil = confirm("Silinsin mi?");
+        return sil;
+
+    }
+</script>
+<div class="item  col-md-9 offset-md-2 col-xs-9 offset-xs-2 col-sm-9 offset-sm-2">
+
+    <div id="liste" class=" table-responsive">
+        <div id="searchbar" style="margin-top:10px;">
+            <form id="frm1" method="post" action="~/Yonetim/Projeler/Ara" class="form-inline">
+                <input class="form-control mr-sm-2" id="txtAra" name="txtAra" value="@ara" type="search" placeholder="Proje Adını Giriniz.." aria-label="Search">
+                <button class="btn btn-secondary my-2 my-sm-0" type="submit">ARA</button>
+                <a href="~/Yonetim/Projeler/KayitFormu/-1" class="btn btn-outline-success">YENİ</a>
+            </form>
+        </div>
+
+        @{
+            <table class="table table-striped table-hover table-bordered">
+                <tr>
+                    <th>Sil</th>
+                    <th>Düzenle</th>
+                    <th>Proje Adı</th>
+                    <th>Başlama Tarihi</th>
+                    <th>Bitiş Tarihi</th>
+                    <th>Konumu</th>
+                    <th>Şehir</th>
+                    <th>İlçe</th>
+                    <th>Tamamlanma Durumu</th>
+                    <th>Açıklama</th>
+                    <th>Medya</th>
+                </tr>
+                @for (int i = 0; i < Model.Count; i++)
+                {
+                    <div>
+                        <tr>
+                            <td>
+                                <a class="btn btn-danger" onclick="return Silsinmi()" href="~/Yonetim/Projeler/Sil/@Model[i].PROJE_REFNO">SİL</a>
+                            </td>
+                            <td>
+                                <a class="btn btn-primary" href="~/Yonetim/Projeler/KayitFormu/@Model[i].PROJE_REFNO">DÜZENLE</a>
+                            </td>
+                            <td>@Model[i].PROJE_ADI</td>
+                            <td>@Model[i].BASLAMA_TARIHI</td>
+                            <td>@Model[i].BITIS_TARIHI</td>
+                            <td>@Model[i].KONUMU</td>
+                            <td>@Model[i].TBLSEHIRLER.SEHIR_ADI</td>
+                            <td>@Model[i].TBLILCELER.ILCE_ADI</td>
+
+                            @if (@Model[i].TAMAMLANMA_DURUMU)
+                            {
+                                <td>Aktif</td>
+                            }
+                            else
+                            {
+                                <td>Pasif</td>
+                            }
+
+                            <td>@Model[i].ACIKLAMA</td>
+                            <td>
+                           
+                            <img src="~/ProjeResimleri/@Model[i].MEDYA" height="100" width="100" />
+                            </td>
+                            
+                        </tr>
+                    </div>
+                }
+            </table>
+        }
+    </div>
+     @Html.PagedListPager((IPagedList)Model, sayfa => Url.Action("Index", new { sayfa }))
+</div>

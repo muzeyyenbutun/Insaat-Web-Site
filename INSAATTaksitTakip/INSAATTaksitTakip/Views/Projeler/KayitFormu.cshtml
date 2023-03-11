@@ -1,0 +1,189 @@
+﻿@model INSAATTaksitTakip.Models.TBLPROJELER
+@{
+    ViewBag.Title = "KayitFormu";
+    Layout = "~/Views/Shared/_YonetimLayout.cshtml";
+    var sehir = ViewData["sehir"] as List<INSAATTaksitTakip.Models.TBLSEHIRLER>;
+    var ılce = ViewData["ılce"] as List<INSAATTaksitTakip.Models.TBLILCELER>;
+
+}
+<script type="text/javascript" src="@Url.Content("~/ckeditor/ckeditor.js")"></script>
+<script type="text/javascript" src="@Url.Content("~/ckfinder/ckfinder.js")"></script>
+<script>
+    $(function () {
+        //aynı ajaxmı kullanıcağımdan dolayı ajaxsetup oluştuyorum
+        $.ajaxSetup({
+            type: "post",
+            url: "/Projeler/IlIlce",//controlerımda gidicek olan yerim
+            dataType: "json"
+        });
+        $.extend({
+            ilGetir: function () {
+                $.ajax({
+                    //datamızı gönderiyoruz
+                    data: { "tip": "ilGetir" },
+                    success: function (sonuc) {
+                        //gelen sonucumuz kontrol ediyoruz ona göre selectimze append işlemi gerçekleştiyoruz
+                        if (sonuc.ok) {
+
+                            $.each(sonuc.text, function (index, item) {
+                                var optionhtml = '<option value="' + item.Value + '">' + item.Text + '</option>';
+                                $("#il").append(optionhtml);
+
+                            });
+
+                        } else {
+                            $.each(sonuc.text, function (index, item) {
+                                var optionhtml = '<option value="' + item.Value + '">' + item.Text + '</option>';
+                                $("#il").append(optionhtml);
+
+                            });
+
+                        }
+                    }
+                });
+            },
+            ilceGetir: function (ilID) {
+
+                $.ajax({
+                    //ekstra olarak functionumaza gelen ilID mizi gönderiyoruz
+                    data: { "ilID": ilID, "tip": "ilceGetir" },
+                    success: function (sonuc) {
+                        //bir önceki kayıtları temizliyorum
+                        $("#ilce option").remove();
+                        if (sonuc.ok) {
+                            //disabled true yapıyorum
+                            $("#ilce").prop("disabled", false);
+                            $.each(sonuc.text, function (index, item) {
+                                var optionhtml = '<option value="' + item.Value + '">' + item.Text + '</option>';
+                                $("#ilce").append(optionhtml);
+                            });
+
+                        } else {
+                            $.each(sonuc.text, function (index, item) {
+                                var optionhtml = '<option value="' + item.Value + '">' + item.Text + '</option>';
+                                $("#ilce").append(optionhtml);
+
+                            });
+                        }
+                    }
+                });
+            }
+        });
+        //ilgetirimizi çalıştıyoruz
+        $.ilGetir();
+        //il selectimizde değişiklik olduğunda çalışacak func
+        $("#il").on("change", function () {
+            //seçili olan id alıyoruz
+            var ilID = $(this).val();
+            //seçili olan idmizi ilceGetir'imze gönderiyoruz
+            $.ilceGetir(ilID);
+        });
+    });
+</script>
+<div class="item  col-md-9 offset-md-2 col-xs-9 offset-xs-2 col-sm-9 offset-sm-2">
+    <div id="kayit" style="align-items:center;">
+        <form id="frm1" method="post" action="~/Yonetim/Projeler/KayitFormu" class="form-horizontal" style="margin-top:10px;">
+            <div class="form-group row">
+                <div class="col-sm-2 ">Proje Refno</div>
+                <div class="col-sm-10"><input class="form-control" type="text" name="PROJE_REFNO" id="PROJE_REFNO" value="@Model.PROJE_REFNO" /></div>
+            </div>
+            <div class="form-group row">
+                <div class="col-sm-2 ">Proje Adı</div>
+                <div class="col-sm-10">
+                    <input class="form-control" type="text" name="PROJE_ADI" id="PROJE_ADI" value="@Model.PROJE_ADI" />
+                    @Html.ValidationMessageFor(m => m.PROJE_ADI, "", new { @style = "color:green" })
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-sm-2 ">Başlama Tarihi</div>
+                <div class="col-sm-10"><input class="form-control" type="date" name="BASLAMA_TARIHI" id="BASLAMA_TARIHI" value="@Model.BASLAMA_TARIHI" /></div>
+            </div>
+            <div class="form-group row">
+                <div class="col-sm-2 ">Bitiş Tarihi</div>
+                <div class="col-sm-10"><input class="form-control" type="date" name="BITIS_TARIHI" id="BITIS_TARIHI" value="@Model.BITIS_TARIHI" /></div>
+            </div>
+            <div class="form-group row">
+                <div class="col-sm-2 ">Konumu</div>
+                <div class="col-sm-10">
+                    <input class="form-control" type="text" name="KONUMU" id="KONUMU" value="@Model.KONUMU" />
+                    @Html.ValidationMessageFor(m => m.KONUMU, "", new { @style = "color:green" })
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-sm-2 ">Şehir Adı</div>
+                <div class="col-sm-10">
+                    <select name="SEHIR_REFNO" id="il" class="form-control">
+                        @for (int i = 0; i < sehir.Count; i++)
+                        {
+                            if (sehir[i].SEHIR_REFNO == Model.SEHIR_REFNO)
+                            {
+                                <option selected value="@sehir[i].SEHIR_REFNO">@sehir[i].SEHIR_ADI</option>
+                            }
+                            else
+                            {
+                                <option value="@sehir[i].SEHIR_REFNO">@sehir[i].SEHIR_ADI</option>
+                            }
+                        }
+                    </select>
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-sm-2 ">İlçe Adı</div>
+                <div class="col-sm-10">
+                    <select name="ILCE_REFNO" id="ilce" class="form-control" disabled>
+                        @for (int i = 0; i < ılce.Count; i++)
+                        {
+                            if (ılce[i].ILCE_REFNO == Model.ILCE_REFNO)
+                            {
+                                <option selected value="@ılce[i].ILCE_REFNO">@ılce[i].ILCE_ADI</option>
+                            }
+                            else
+                            {
+                                <option value="@ılce[i].ILCE_REFNO">@ılce[i].ILCE_ADI</option>
+                            }
+                        }
+                    </select>
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-sm-2 ">Tamamlanma Durumu</div>
+                <div class="col-sm-10">
+                    Aktif
+                    @Html.RadioButtonFor(model => model.TAMAMLANMA_DURUMU, "True")
+                    Pasif
+                    @Html.RadioButtonFor(model => model.TAMAMLANMA_DURUMU, "False")
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-sm-2 ">Açıklama</div>
+                <div class="col-sm-10">
+                    @Html.TextAreaFor(a => a.ACIKLAMA, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(m => m.ACIKLAMA, "", new { @style = "color:green" })
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-sm-2 ">Medya</div>
+                <div class="col-md-10">
+                    @using (Html.BeginForm("ResimYukle", "Projeler", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                    {
+                    @Html.EditorFor(model => model.MEDYA)
+                    @Html.ValidationMessageFor(m => m.MEDYA, "", new { @style = "color:green" })
+                    <input type="file" value="Dosya" />
+                    <input type="submit" value="Yükle" />
+                    }
+                </div>
+            </div>
+            <div class="form-group">
+                <div style="align-items:center;">
+                    <input class="btn btn-primary" type="submit" value="Kaydet" />
+                    <a href="~/Yonetim/PROJELER/Index" class="btn btn-warning">Vazgeç</a>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+<script type="text/javascript">
+    CKEDITOR.replace('ACIKLAMA');
+    CKFinder.setupCKEditor(null, '/ckfinder/');
+</script>
+

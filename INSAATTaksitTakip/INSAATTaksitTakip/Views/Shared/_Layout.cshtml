@@ -1,0 +1,132 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ÖZ DUMLU İNŞAAT</title>
+    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+    <script src="~/Scripts/bootstrap.js"></script>
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <link href="~/Content/Menu.css" rel="stylesheet" />
+    <link href="~/Content/Genel.css" rel="stylesheet" />
+</head>
+<body>
+    <div id="bannerüstü" class="col-md-12">
+
+        <div id="üstsol" class="col-md-1 offset-md-2">
+            <img src="~/resimler/telefon.jpg" />
+            <p>Hemen Arayın</p>
+            <p>(0326)6455030</p>
+        </div>
+
+        <div id="üstorta" class="col-md-4 offset-md-1">
+            <input type="text" name="Ara" />
+        </div>
+        <div id="sosyalmedya" class="col-md-2 offset-md-0">
+
+            <a href="https:facebook.com/"><img src="~/resimler/facebook.jpg" /></a>
+            <img src="~/resimler/twitter.jpg" />
+            <img src="~/resimler/instagram.jpg" />
+            <img src="~/resimler/youtube.jpg" />
+        </div>
+        <div id="giris" class="col-md-0 offset-md-0 ">
+            
+           <a href="~/Account/Login"><img src="~/resimler/user.jpg" /></a>
+        </div>
+    </div>
+    <div id="banner" class="col-md-12 row">
+
+        <img class="col-md-2 offset-md-2 " src="~/resimler/ZDUMLUNAAT.jpg" />
+
+        <div id="menu" class="col-md-7 offset-md-0">
+
+            <ul>
+                <li><a href="~/Anasayfa/Index">Anasayfa</a></li>
+                <li>
+                    <a>Kurumsal</a>
+                    <ul>
+                        <li><a href="/Hakkimizda/Index">Hakkımızda</a></li>
+                        <li><a href="/YonetimKurulu/Index">Yönetim Kurulu</a></li>
+                        <li><a href="/Vızyon/Index">Vizyon</a></li>
+                        <li><a href="/Mısyon/Index">Misyon</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a>Projeler</a>
+                    <ul>
+                        <li><a href="~/DevamEdenProjeler/Index">Devam Eden Projeler</a></li>
+                        <li><a href="~/TamamlananProjeler/Index">Tamamlanan Projeler</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a>Basın</a>
+                    <ul>
+                        <li><a>Haberler</a></li>
+                        <li><a href="~/Galeri/Index">Galeri</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a>İnsan Kaynakları</a>
+                    <ul>
+                        <li><a href="~/AcikPozisyon/Index">Açık Pozisyonlar</a></li>
+                        <li><a href="~/GenelBasvuruFormu/KayitFormu">Genel Başvuru Formu</a></li>
+                    </ul>
+                </li>
+                <li><a href="~/Referans/Index">Referanslar</a></li>
+                <li>
+                    <a>Sorumluluklarımız</a>
+                    <ul>
+                        <li><a  href="/IsSaglıgıVeGuvenligi/Index">İş Sağlığı ve Güvenliği</a></li>
+                        <li><a href="/CevreSorumlulugu/Index">Çevre Sorumluluğu</a></li>
+                    </ul>
+                </li>
+                <li><a href="/Iletisim/Index">İletişim</a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="row col-md-9 offset-md-2">
+        @RenderBody()
+    </div>
+    <div id="footer" class=" col-md-9 offset-md-2 row">
+        <div id="arkafon"><img src="~/resimler/arkafon.jpg" /></div>
+        <div class="col-md-4">
+            <img style="margin-top:20px;" class="col-md-5 offset-md-1" src="~/resimler/ZDUMLUNAAT (2).jpg" />
+            <ul>
+                <li>
+                    <p style="clear:both;font-family:Candara;font-weight:bold;margin-top:10px;" class="offset-md-0">
+                        Burada site ile ilgili bilgi verilecektir.<br />
+                        Burada site ile ilgili bilgi verilecektir.<br />
+                        Burada site ile ilgili bilgi verilecektir.<br />
+                        Burada site ile ilgili bilgi verilecektir.<br />
+
+                    </p>
+                </li>
+            </ul>
+        </div>
+
+        <div class="col-md-4">
+            <p style="clear:both;font-size:18px;font-family:Candara;font-weight:bold;margin-top:20px;" class="offset-md-1">SİTE İÇİ BAĞLANTILAR</p>
+            <ul style="clear:both;font-size:18px;font-family:Candara;margin-top:20px;">
+                <li><a href="#">Hakkımızda</a></li>
+                <li><a href="#">Vizyon,Misyon</a></li>
+                <li><a href="#">İnsan Kaynakları</a></li>
+                <li><a href="#">Ofisimiz</a></li>
+                <li><a href="#">Yönetim Kurulu</a></li>
+                <li><a href="#">Referanslarımız</a></li>
+                <li><a href="#">Basın</a></li>
+                <li><a href="#">Bize Ulaşın</a></li>
+            </ul>
+        </div>
+
+        <div class="footeriletisim col-md-4">
+            <ul style="margin-top:20px;">
+                <li><a><i class="fas fa-phone-alt"></i><span style="font-family:Candara;"> TELEFON:(0326) 645 50 30 </span></a></li>
+                <li><a><i class="fas fa-envelope"></i><span style="font-family:Candara;"> E-POSTA:ozdumlu@gmail.com </span></a></li>
+                <li><a><i class="fas fa-map-marker-alt"></i><span style="font-family:Candara;"> ADRES:DENİZCİLER MAH. E-5 ALTI ÜZERİ SK. 12/B 8 HATAY İSKENDERUN </span></a></li>
+                <li><iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3201.4609388089275!2d36.21321731563015!3d36.63936028443609!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x152f5cfee2be71bb%3A0x9b6526f0a57945d6!2zw5Z6IER1bWx1IMSwbsWfYWF0IC0gRHVtbHUgS2FyZGXFn2xlciBZYXDEsQ!5e0!3m2!1str!2str!4v1584122105258!5m2!1str!2str" width="200" height="130" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe></li>
+            </ul>
+        </div>
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,29 @@
+﻿@using INSAATTaksitTakip.Models
+@model  TBLKULLANICITIPLERI
+@{
+    ViewBag.Title = "KayitFormu";
+    Layout = "~/Views/Shared/_YonetimLayout.cshtml";
+}
+
+    <div class="item col-md-9 offset-md-2 col-xs-9 offset-xs-2 col-sm-9 offset-sm-2">
+        <div id="kayit" style="align-items:center;">
+            <form id="frm1" method="post" action="~/Yonetim/KullaniciTipleri/KayitFormu" class="form-horizontal" style="margin-top:10px;" enctype="multipart/form-data">
+                <input type="hidden" name="KULLANICI_TIPI_REFNO" value="@Model.KULLANICI_TIPI_REFNO" />
+                <div class="form-group row">
+                    <div class="col-sm-2 ">Kullanıcı Tipi Adı</div>
+                    <div class="col-sm-10">
+                        <input class="form-control" type="text" required value="@Model.KULLANICI_TIPI_ADI" maxlength="50" name="KULLANICI_TIPI_ADI" id="KULLANICI_TIPI_ADI" />
+                        @Html.ValidationMessageFor(m => m.KULLANICI_TIPI_ADI, "", new { @style = "color:green" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div style="align-items:center;">
+                        <input class="btn btn-primary" type="submit" value="Kaydet" />
+                        <a href="~/Yonetim/KullaniciTipleri/Index" class="btn btn-warning">Vazgeç</a>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+

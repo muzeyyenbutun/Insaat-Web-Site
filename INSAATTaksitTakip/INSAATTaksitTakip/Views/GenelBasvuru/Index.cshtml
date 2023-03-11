@@ -1,0 +1,58 @@
+﻿@using INSAATTaksitTakip.Models
+@using PagedList;
+@using PagedList.Mvc;
+@model PagedList.IPagedList<TBLGENELBASVURU>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_YonetimLayout.cshtml";
+    string ara = "";
+    if (Request["ara"] != null)
+    {
+        ara = Request["ara"].ToString();
+    }
+}
+<script>
+
+    function Silsinmi() {
+        var sil = confirm("Silinsin mi?");
+        return sil;
+    }
+</script>
+<div class="item  col-md-9 offset-md-2 col-xs-9 offset-xs-2 col-sm-9 offset-sm-2">
+    <div id="liste" class="table-responsive ">
+        <div id="searchbar" style="margin-top:10px; margin-bottom:10px;">
+            <form id="frm1" method="post" action="~/Yonetim/GenelBasvuru/Ara" class="form-inline">
+                <input class="form-control mr-sm-2" id="txtAra" name="txtAra" value="@ara" type="search" placeholder="Pozisyon adı giriniz.." aria-label="Search">
+                <button class="btn btn-secondary my-2 my-sm-0" type="submit">ARA</button>
+            </form>
+        </div>
+        @{
+            <table class="table table-striped table-hover table-bordered">
+                <tr>
+                    <th>Sil</th>
+                    <th>Adı</th>
+                    <th>Soyadı</th>
+                    <th>Bitirilen Okul</th>
+                    <th>Ehliyet Sınıfı</th>
+                    <th>Özgeçmiş</th>
+                </tr>
+                @for (int i = 0; i < Model.Count; i++)
+                {
+                    <tr>
+                        <td><a class="btn btn-danger" onclick="return Silsinmi()" href="~/Yonetim/GenelBasvuru/Sil/@Model[i].BASVURU_REFNO">SİL</a></td>
+                        <td>@Model[i].BASVURAN_ADI</td>
+                        <td>@Model[i].BASVURAN_SOYADI</td>
+                        <td>@Model[i].BASVURAN_OKUL</td>
+                        <td>@Model[i].BASVURAN_EHLIYET</td>
+                        <td>@Model[i].DOSYA_ADI</td>
+
+                    </tr>
+                }
+            </table>
+
+        }
+
+    </div>
+    @Html.PagedListPager((IPagedList)Model, sayfa => Url.Action("Index", new { sayfa }))
+</div>
+

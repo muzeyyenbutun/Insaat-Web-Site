@@ -1,0 +1,421 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="INSAATBITIRMEModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="TBLACIKPOZISYONLAR">
+    <Key>
+      <PropertyRef Name="POZISYON_REFNO" />
+    </Key>
+    <Property Name="POZISYON_REFNO" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="POZISYON_ADI" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="POZISYON_DETAYI" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="POZISYON_DURUMU" Type="Boolean" Nullable="false" />
+    <Property Name="TARIH" Type="DateTime" Nullable="false" Precision="0" />
+  </EntityType>
+  <EntityType Name="TBLBASIN">
+    <Key>
+      <PropertyRef Name="BASIN_REFNO" />
+    </Key>
+    <Property Name="BASIN_REFNO" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="BASLIK" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="ICERIK" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="MEDYA" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="TARIH" Type="DateTime" Precision="0" />
+  </EntityType>
+  <EntityType Name="TBLGELIR_GIDER">
+    <Key>
+      <PropertyRef Name="GELIR_GIDER_REFNO" />
+    </Key>
+    <Property Name="GELIR_GIDER_REFNO" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="GG_TIPI_REFNO" Type="Int32" Nullable="false" />
+    <Property Name="GELIR_GIDER_TURU" Type="Boolean" Nullable="false" />
+    <Property Name="BORC" Type="Decimal" Precision="10" Scale="4" Nullable="false" />
+    <Property Name="ALACAK" Type="Decimal" Precision="10" Scale="4" Nullable="false" />
+    <Property Name="ACIKLAMA" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="TBLGG_TIPI" Relationship="INSAATBITIRMEModel.FK_TBLGELIR_GIDER_TBLGG_TIPI" FromRole="TBLGELIR_GIDER" ToRole="TBLGG_TIPI" />
+  </EntityType>
+  <EntityType Name="TBLGENELBASVURU">
+    <Key>
+      <PropertyRef Name="BASVURU_REFNO" />
+    </Key>
+    <Property Name="BASVURU_REFNO" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="BASVURAN_ADI" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="BASVURAN_SOYADI" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="BASVURAN_OKUL" Type="String" MaxLength="250" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="BASVURAN_EHLIYET" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="DOSYA_ADI" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="TBLGG_TIPI">
+    <Key>
+      <PropertyRef Name="GG_TIPI_REFNO" />
+    </Key>
+    <Property Name="GG_TIPI_REFNO" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="GG_TIPI_ADI" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="GG_TURU" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="TBLGELIR_GIDER" Relationship="INSAATBITIRMEModel.FK_TBLGELIR_GIDER_TBLGG_TIPI" FromRole="TBLGG_TIPI" ToRole="TBLGELIR_GIDER" />
+    <NavigationProperty Name="TBLGG_TIPI1" Relationship="INSAATBITIRMEModel.FK_TBLGG_TIPI_TBLGG_TIPI" FromRole="TBLGG_TIPI" ToRole="TBLGG_TIPI1" />
+    <NavigationProperty Name="TBLGG_TIPI2" Relationship="INSAATBITIRMEModel.FK_TBLGG_TIPI_TBLGG_TIPI" FromRole="TBLGG_TIPI1" ToRole="TBLGG_TIPI" />
+  </EntityType>
+  <EntityType Name="TBLILCELER">
+    <Key>
+      <PropertyRef Name="ILCE_REFNO" />
+    </Key>
+    <Property Name="ILCE_REFNO" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ILCE_ADI" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="SEHIR_REFNO" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="TBLPROJELER" Relationship="Self.FK_TBLPROJELER_TBLILCELER" FromRole="TBLILCELER" ToRole="TBLPROJELER" />
+    <NavigationProperty Name="TBLUYELER" Relationship="Self.FK_TBLUYELER_TBLILCELER" FromRole="TBLILCELER" ToRole="TBLUYELER" />
+  </EntityType>
+  <EntityType Name="TBLKULLANICILAR">
+    <Key>
+      <PropertyRef Name="KULLANICI_REFNO" />
+    </Key>
+    <Property Name="KULLANICI_REFNO" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="KULLANICI_ADI" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="KULLANICI_SIFRE" Type="String" MaxLength="8" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="KULLANICI_DURUMU" Type="Boolean" Nullable="false" />
+    <Property Name="KULLNICI_TIPI_REFNO" Type="Int32" Nullable="false" />
+    <Property Name="MAIL" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="TBLKULLANICITIPLERI" Relationship="Self.FK_TBLKULLANICILAR_TBLKULLANICITIPLERI" FromRole="TBLKULLANICILAR" ToRole="TBLKULLANICITIPLERI" />
+  </EntityType>
+  <EntityType Name="TBLKULLANICITIPLERI">
+    <Key>
+      <PropertyRef Name="KULLANICI_TIPI_REFNO" />
+    </Key>
+    <Property Name="KULLANICI_TIPI_REFNO" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="KULLANICI_TIPI_ADI" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="TBLKULLANICILAR" Relationship="Self.FK_TBLKULLANICILAR_TBLKULLANICITIPLERI" FromRole="TBLKULLANICITIPLERI" ToRole="TBLKULLANICILAR" />
+  </EntityType>
+  <EntityType Name="TBLMESAJLAR">
+    <Key>
+      <PropertyRef Name="MESAJ_REFNO" />
+    </Key>
+    <Property Name="MESAJ_REFNO" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="AD_SOYAD" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="TELEFON" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="MAIL" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="BASLIK" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="ICERIK" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="UYE_REFNO" Type="Int32" />
+    <NavigationProperty Name="TBLUYELER" Relationship="Self.FK_TBLMESAJLAR_TBLUYELER" FromRole="TBLMESAJLAR" ToRole="TBLUYELER" />
+  </EntityType>
+  <EntityType Name="TBLPROJELER">
+    <Key>
+      <PropertyRef Name="PROJE_REFNO" />
+    </Key>
+    <Property Name="PROJE_REFNO" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="PROJE_ADI" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="BASLAMA_TARIHI" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="BITIS_TARIHI" Type="DateTime" Precision="0" />
+    <Property Name="KONUMU" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="SEHIR_REFNO" Type="Int32" Nullable="false" />
+    <Property Name="ILCE_REFNO" Type="Int32" Nullable="false" />
+    <Property Name="TAMAMLANMA_DURUMU" Type="Boolean" Nullable="false" />
+    <Property Name="ACIKLAMA" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="MEDYA" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="TBLILCELER" Relationship="Self.FK_TBLPROJELER_TBLILCELER" FromRole="TBLPROJELER" ToRole="TBLILCELER" />
+    <NavigationProperty Name="TBLSEHIRLER" Relationship="Self.FK_TBLPROJELER_TBLSEHIRLER" FromRole="TBLPROJELER" ToRole="TBLSEHIRLER" />
+    <NavigationProperty Name="TBLUYE_PROJE" Relationship="Self.FK_TBLUYE_PROJE_TBLUYE_PROJE" FromRole="TBLPROJELER" ToRole="TBLUYE_PROJE" />
+    <NavigationProperty Name="TBLPROJELER1" Relationship="INSAATBITIRMEModel.FK_TBLPROJELER_TBLPROJELER" FromRole="TBLPROJELER" ToRole="TBLPROJELER1" />
+    <NavigationProperty Name="TBLPROJELER2" Relationship="INSAATBITIRMEModel.FK_TBLPROJELER_TBLPROJELER" FromRole="TBLPROJELER1" ToRole="TBLPROJELER" />
+  </EntityType>
+  <EntityType Name="TBLREFERANSLAR">
+    <Key>
+      <PropertyRef Name="REFERANS_REFNO" />
+    </Key>
+    <Property Name="REFERANS_REFNO" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="MEDYA" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="ACIKLAMA" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="TBLSAYFA">
+    <Key>
+      <PropertyRef Name="SAYFA_REFNO" />
+    </Key>
+    <Property Name="SAYFA_REFNO" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ADI" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="ICERIK" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+  </EntityType>
+  <EntityType Name="TBLSEHIRLER">
+    <Key>
+      <PropertyRef Name="SEHIR_REFNO" />
+    </Key>
+    <Property Name="SEHIR_REFNO" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="SEHIR_ADI" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="TBLPROJELER" Relationship="Self.FK_TBLPROJELER_TBLSEHIRLER" FromRole="TBLSEHIRLER" ToRole="TBLPROJELER" />
+    <NavigationProperty Name="TBLUYELER" Relationship="Self.FK_TBLUYELER_TBLSEHIRLER" FromRole="TBLSEHIRLER" ToRole="TBLUYELER" />
+  </EntityType>
+  <EntityType Name="TBLUYE_HAREKET">
+    <Key>
+      <PropertyRef Name="UYE_HAR_REFNO" />
+    </Key>
+    <Property Name="UYE_HAR_REFNO" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UYE_PROJE_REFNO" Type="Int32" Nullable="false" />
+    <Property Name="BORC" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+    <Property Name="ALACAK" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+    <Property Name="TARIH" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="ACIKLAMA" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="TBLUYE_PROJE" Relationship="Self.FK_TBLUYE_HAREKET_TBLUYE_PROJE1" FromRole="TBLUYE_HAREKET" ToRole="TBLUYE_PROJE" />
+  </EntityType>
+  <EntityType Name="TBLUYE_PROJE">
+    <Key>
+      <PropertyRef Name="UYE_PROJE_REFNO" />
+    </Key>
+    <Property Name="UYE_PROJE_REFNO" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UYE_REFNO" Type="Int32" Nullable="false" />
+    <Property Name="PROJE_REFNO" Type="Int32" Nullable="false" />
+    <Property Name="PESINAT" Type="Decimal" Precision="10" Scale="4" Nullable="false" />
+    <Property Name="TOPLAM_TUTAR" Type="Decimal" Precision="10" Scale="4" Nullable="false" />
+    <Property Name="TAKSIT_SAYISI" Type="Int32" Nullable="false" />
+    <Property Name="AYLIK_TUTAR" Type="Decimal" Precision="10" Scale="4" Nullable="false" />
+    <NavigationProperty Name="TBLPROJELER" Relationship="Self.FK_TBLUYE_PROJE_TBLUYE_PROJE" FromRole="TBLUYE_PROJE" ToRole="TBLPROJELER" />
+    <NavigationProperty Name="TBLUYE_HAREKET" Relationship="Self.FK_TBLUYE_HAREKET_TBLUYE_PROJE1" FromRole="TBLUYE_PROJE" ToRole="TBLUYE_HAREKET" />
+    <NavigationProperty Name="TBLUYELER" Relationship="Self.FK_TBLUYE_PROJE_TBLUYELER" FromRole="TBLUYE_PROJE" ToRole="TBLUYELER" />
+  </EntityType>
+  <EntityType Name="TBLUYELER">
+    <Key>
+      <PropertyRef Name="UYE_REFNO" />
+    </Key>
+    <Property Name="UYE_REFNO" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UYE_AD" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="UYE_SOYAD" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="UYE_ADRES" Type="String" MaxLength="250" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="UYE_TELEFON" Type="String" MaxLength="11" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="SEHIR_REFNO" Type="Int32" />
+    <Property Name="ILCE_REFNO" Type="Int32" />
+    <Property Name="UYE_MAIL" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="PAROLA" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="TBLILCELER" Relationship="Self.FK_TBLUYELER_TBLILCELER" FromRole="TBLUYELER" ToRole="TBLILCELER" />
+    <NavigationProperty Name="TBLMESAJLAR" Relationship="Self.FK_TBLMESAJLAR_TBLUYELER" FromRole="TBLUYELER" ToRole="TBLMESAJLAR" />
+    <NavigationProperty Name="TBLSEHIRLER" Relationship="Self.FK_TBLUYELER_TBLSEHIRLER" FromRole="TBLUYELER" ToRole="TBLSEHIRLER" />
+    <NavigationProperty Name="TBLUYE_PROJE" Relationship="Self.FK_TBLUYE_PROJE_TBLUYELER" FromRole="TBLUYELER" ToRole="TBLUYE_PROJE" />
+  </EntityType>
+  <Association Name="FK_TBLPROJELER_TBLILCELER">
+    <End Role="TBLILCELER" Type="Self.TBLILCELER" Multiplicity="1" />
+    <End Role="TBLPROJELER" Type="Self.TBLPROJELER" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TBLILCELER">
+        <PropertyRef Name="ILCE_REFNO" />
+      </Principal>
+      <Dependent Role="TBLPROJELER">
+        <PropertyRef Name="ILCE_REFNO" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TBLUYELER_TBLILCELER">
+    <End Role="TBLILCELER" Type="Self.TBLILCELER" Multiplicity="0..1" />
+    <End Role="TBLUYELER" Type="Self.TBLUYELER" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TBLILCELER">
+        <PropertyRef Name="ILCE_REFNO" />
+      </Principal>
+      <Dependent Role="TBLUYELER">
+        <PropertyRef Name="ILCE_REFNO" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TBLKULLANICILAR_TBLKULLANICITIPLERI">
+    <End Role="TBLKULLANICITIPLERI" Type="Self.TBLKULLANICITIPLERI" Multiplicity="1" />
+    <End Role="TBLKULLANICILAR" Type="Self.TBLKULLANICILAR" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TBLKULLANICITIPLERI">
+        <PropertyRef Name="KULLANICI_TIPI_REFNO" />
+      </Principal>
+      <Dependent Role="TBLKULLANICILAR">
+        <PropertyRef Name="KULLNICI_TIPI_REFNO" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TBLMESAJLAR_TBLUYELER">
+    <End Role="TBLUYELER" Type="Self.TBLUYELER" Multiplicity="0..1" />
+    <End Role="TBLMESAJLAR" Type="Self.TBLMESAJLAR" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TBLUYELER">
+        <PropertyRef Name="UYE_REFNO" />
+      </Principal>
+      <Dependent Role="TBLMESAJLAR">
+        <PropertyRef Name="UYE_REFNO" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TBLPROJELER_TBLSEHIRLER">
+    <End Role="TBLSEHIRLER" Type="Self.TBLSEHIRLER" Multiplicity="1" />
+    <End Role="TBLPROJELER" Type="Self.TBLPROJELER" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TBLSEHIRLER">
+        <PropertyRef Name="SEHIR_REFNO" />
+      </Principal>
+      <Dependent Role="TBLPROJELER">
+        <PropertyRef Name="SEHIR_REFNO" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TBLUYE_PROJE_TBLUYE_PROJE">
+    <End Role="TBLPROJELER" Type="Self.TBLPROJELER" Multiplicity="1" />
+    <End Role="TBLUYE_PROJE" Type="Self.TBLUYE_PROJE" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TBLPROJELER">
+        <PropertyRef Name="PROJE_REFNO" />
+      </Principal>
+      <Dependent Role="TBLUYE_PROJE">
+        <PropertyRef Name="PROJE_REFNO" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TBLUYELER_TBLSEHIRLER">
+    <End Role="TBLSEHIRLER" Type="Self.TBLSEHIRLER" Multiplicity="0..1" />
+    <End Role="TBLUYELER" Type="Self.TBLUYELER" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TBLSEHIRLER">
+        <PropertyRef Name="SEHIR_REFNO" />
+      </Principal>
+      <Dependent Role="TBLUYELER">
+        <PropertyRef Name="SEHIR_REFNO" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TBLUYE_HAREKET_TBLUYE_PROJE1">
+    <End Role="TBLUYE_PROJE" Type="Self.TBLUYE_PROJE" Multiplicity="1" />
+    <End Role="TBLUYE_HAREKET" Type="Self.TBLUYE_HAREKET" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TBLUYE_PROJE">
+        <PropertyRef Name="UYE_PROJE_REFNO" />
+      </Principal>
+      <Dependent Role="TBLUYE_HAREKET">
+        <PropertyRef Name="UYE_PROJE_REFNO" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TBLUYE_PROJE_TBLUYELER">
+    <End Role="TBLUYELER" Type="Self.TBLUYELER" Multiplicity="1" />
+    <End Role="TBLUYE_PROJE" Type="Self.TBLUYE_PROJE" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TBLUYELER">
+        <PropertyRef Name="UYE_REFNO" />
+      </Principal>
+      <Dependent Role="TBLUYE_PROJE">
+        <PropertyRef Name="UYE_REFNO" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="INSAATBITIRMEEntities2" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+    <EntitySet Name="TBLACIKPOZISYONLAR" EntityType="Self.TBLACIKPOZISYONLAR" />
+    <EntitySet Name="TBLBASIN" EntityType="Self.TBLBASIN" />
+    <EntitySet Name="TBLGELIR_GIDER" EntityType="Self.TBLGELIR_GIDER" />
+    <EntitySet Name="TBLGENELBASVURU" EntityType="Self.TBLGENELBASVURU" />
+    <EntitySet Name="TBLGG_TIPI" EntityType="Self.TBLGG_TIPI" />
+    <EntitySet Name="TBLILCELER" EntityType="Self.TBLILCELER" />
+    <EntitySet Name="TBLKULLANICILAR" EntityType="Self.TBLKULLANICILAR" />
+    <EntitySet Name="TBLKULLANICITIPLERI" EntityType="Self.TBLKULLANICITIPLERI" />
+    <EntitySet Name="TBLMESAJLAR" EntityType="Self.TBLMESAJLAR" />
+    <EntitySet Name="TBLPROJELER" EntityType="Self.TBLPROJELER" />
+    <EntitySet Name="TBLREFERANSLAR" EntityType="Self.TBLREFERANSLAR" />
+    <EntitySet Name="TBLSAYFA" EntityType="Self.TBLSAYFA" />
+    <EntitySet Name="TBLSEHIRLER" EntityType="Self.TBLSEHIRLER" />
+    <EntitySet Name="TBLUYE_HAREKET" EntityType="Self.TBLUYE_HAREKET" />
+    <EntitySet Name="TBLUYE_PROJE" EntityType="Self.TBLUYE_PROJE" />
+    <EntitySet Name="TBLUYELER" EntityType="Self.TBLUYELER" />
+    <AssociationSet Name="FK_TBLPROJELER_TBLILCELER" Association="Self.FK_TBLPROJELER_TBLILCELER">
+      <End Role="TBLILCELER" EntitySet="TBLILCELER" />
+      <End Role="TBLPROJELER" EntitySet="TBLPROJELER" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TBLUYELER_TBLILCELER" Association="Self.FK_TBLUYELER_TBLILCELER">
+      <End Role="TBLILCELER" EntitySet="TBLILCELER" />
+      <End Role="TBLUYELER" EntitySet="TBLUYELER" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TBLKULLANICILAR_TBLKULLANICITIPLERI" Association="Self.FK_TBLKULLANICILAR_TBLKULLANICITIPLERI">
+      <End Role="TBLKULLANICITIPLERI" EntitySet="TBLKULLANICITIPLERI" />
+      <End Role="TBLKULLANICILAR" EntitySet="TBLKULLANICILAR" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TBLMESAJLAR_TBLUYELER" Association="Self.FK_TBLMESAJLAR_TBLUYELER">
+      <End Role="TBLUYELER" EntitySet="TBLUYELER" />
+      <End Role="TBLMESAJLAR" EntitySet="TBLMESAJLAR" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TBLPROJELER_TBLSEHIRLER" Association="Self.FK_TBLPROJELER_TBLSEHIRLER">
+      <End Role="TBLSEHIRLER" EntitySet="TBLSEHIRLER" />
+      <End Role="TBLPROJELER" EntitySet="TBLPROJELER" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TBLUYE_PROJE_TBLUYE_PROJE" Association="Self.FK_TBLUYE_PROJE_TBLUYE_PROJE">
+      <End Role="TBLPROJELER" EntitySet="TBLPROJELER" />
+      <End Role="TBLUYE_PROJE" EntitySet="TBLUYE_PROJE" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TBLUYELER_TBLSEHIRLER" Association="Self.FK_TBLUYELER_TBLSEHIRLER">
+      <End Role="TBLSEHIRLER" EntitySet="TBLSEHIRLER" />
+      <End Role="TBLUYELER" EntitySet="TBLUYELER" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TBLUYE_HAREKET_TBLUYE_PROJE1" Association="Self.FK_TBLUYE_HAREKET_TBLUYE_PROJE1">
+      <End Role="TBLUYE_PROJE" EntitySet="TBLUYE_PROJE" />
+      <End Role="TBLUYE_HAREKET" EntitySet="TBLUYE_HAREKET" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TBLUYE_PROJE_TBLUYELER" Association="Self.FK_TBLUYE_PROJE_TBLUYELER">
+      <End Role="TBLUYELER" EntitySet="TBLUYELER" />
+      <End Role="TBLUYE_PROJE" EntitySet="TBLUYE_PROJE" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TBLGELIR_GIDER_TBLGG_TIPI" Association="INSAATBITIRMEModel.FK_TBLGELIR_GIDER_TBLGG_TIPI">
+      <End Role="TBLGG_TIPI" EntitySet="TBLGG_TIPI" />
+      <End Role="TBLGELIR_GIDER" EntitySet="TBLGELIR_GIDER" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TBLGG_TIPI_TBLGG_TIPI" Association="INSAATBITIRMEModel.FK_TBLGG_TIPI_TBLGG_TIPI">
+      <End Role="TBLGG_TIPI" EntitySet="TBLGG_TIPI" />
+      <End Role="TBLGG_TIPI1" EntitySet="TBLGG_TIPI" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TBLPROJELER_TBLPROJELER" Association="INSAATBITIRMEModel.FK_TBLPROJELER_TBLPROJELER">
+      <End Role="TBLPROJELER" EntitySet="TBLPROJELER" />
+      <End Role="TBLPROJELER1" EntitySet="TBLPROJELER" />
+    </AssociationSet>
+    <EntitySet Name="TBLLOGIN" EntityType="INSAATBITIRMEModel.TBLLOGIN" />
+  </EntityContainer>
+  <Association Name="FK_TBLGELIR_GIDER_TBLGG_TIPI">
+    <End Type="INSAATBITIRMEModel.TBLGG_TIPI" Role="TBLGG_TIPI" Multiplicity="1" />
+    <End Type="INSAATBITIRMEModel.TBLGELIR_GIDER" Role="TBLGELIR_GIDER" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TBLGG_TIPI">
+        <PropertyRef Name="GG_TIPI_REFNO" />
+      </Principal>
+      <Dependent Role="TBLGELIR_GIDER">
+        <PropertyRef Name="GG_TIPI_REFNO" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TBLGG_TIPI_TBLGG_TIPI">
+    <End Type="INSAATBITIRMEModel.TBLGG_TIPI" Role="TBLGG_TIPI" Multiplicity="1" />
+    <End Type="INSAATBITIRMEModel.TBLGG_TIPI" Role="TBLGG_TIPI1" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="TBLGG_TIPI">
+        <PropertyRef Name="GG_TIPI_REFNO" />
+      </Principal>
+      <Dependent Role="TBLGG_TIPI1">
+        <PropertyRef Name="GG_TIPI_REFNO" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TBLPROJELER_TBLPROJELER">
+    <End Type="INSAATBITIRMEModel.TBLPROJELER" Role="TBLPROJELER" Multiplicity="1" />
+    <End Type="INSAATBITIRMEModel.TBLPROJELER" Role="TBLPROJELER1" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="TBLPROJELER">
+        <PropertyRef Name="PROJE_REFNO" />
+      </Principal>
+      <Dependent Role="TBLPROJELER1">
+        <PropertyRef Name="PROJE_REFNO" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="TBLLOGIN">
+    <Key>
+      <PropertyRef Name="LOGIN_REFNO" />
+    </Key>
+    <Property Name="LOGIN_REFNO" Type="Int32" Nullable="false" />
+    <Property Name="LOGIN_FULLNAME" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="LOGIN_MAIL" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="LOGIN_TEL" Type="String" MaxLength="11" FixedLength="false" Unicode="false" />
+  </EntityType>
+</Schema>

@@ -1,0 +1,50 @@
+﻿
+*
+{
+    margin:0px;
+    padding:0px;
+    border:0px;
+}
+#menu
+{
+    width:1000px;
+    height:40px;
+    margin:0 auto;
+  background-color:#d3b16a;
+}
+    #menu ul {
+        list-style-type: none;
+        
+    }
+        #menu ul li {
+            float: left;
+            width: 120px;
+            height: 30px;
+            padding: 5px;
+            position: relative;
+            line-height: 30px;
+            border: #d3b16a;
+        }
+#menu ul li a
+{
+    color:#ffffff;
+    text-decoration:none;
+}
+#menu ul li ul
+{
+    display:none;
+    position:absolute;
+    left:0px;
+    top:41px;
+}
+
+#menu ul li :hover ul
+{
+    display:block;
+}
+
+            #menu ul li:hover {
+                background-color: #c3942c;
+            }
+
+ 

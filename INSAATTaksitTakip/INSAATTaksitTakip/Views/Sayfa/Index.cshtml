@@ -1,0 +1,53 @@
+﻿@using INSAATTaksitTakip.Models
+@using PagedList;
+@using PagedList.Mvc;
+@model PagedList.IPagedList<TBLSAYFA>
+@{
+
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_YonetimLayout.cshtml";
+    string ara = "";
+    if (Request["ara"] != null)
+    {
+        ara = Request["ara"].ToString();
+    }
+}
+<script>
+    function Silinsinmi() {
+        var sil = confirm("Silinsin Mi?");
+        return sil;
+    }
+</script>
+<div class="item  col-md-9 offset-md-2 col-xs-9 offset-xs-2 col-sm-9 offset-sm-2">
+
+    <div id="liste" class="table-responsive">
+        <div id="serchbar" style="margin-top:10px;">
+            <form id="frm1" method="post" action="~/Yonetim/Sayfa/Ara" class="form-inline">
+                <input type="search" name="txtAra" id="txtAra" class="form-control mr-sm-2" placeholder="Sayfa Adını Giriniz" aria-label="Search" />
+                <button type="submit" class="btn btn-secondary my-2 my-sm-0">ARA</button>
+                <a href="~/Yonetim/Sayfa/KayitFormu/-1" class="btn btn-outline-success">YENİ</a>
+            </form>
+        </div>
+        @{
+            <table class="table table-striped table-hover table-bordered">
+                <tr>
+                    <th>Sil</th>
+                    <th>Düzenle</th>
+                    <th>Sayfa Adı</th>
+                    <th>Sayfa İçeriği</th>
+                </tr>
+                @for (int i = 0; i < Model.Count; i++)
+                {
+                    <tr>
+                        <td><a class="btn btn-danger" onclick="return Silinsinmi()" href="~/Yonetim/SAYFA/Sil/@Model[i].SAYFA_REFNO">SİL</a></td>
+                        <td><a class="btn btn-primary" href="~/Yonetim/SAYFA/KayitFormu/@Model[i].SAYFA_REFNO">DÜZENLE</a></td>
+                        <td>@Model[i].ADI</td>
+                        <td>@Model[i].ICERIK</td>
+                    </tr>
+                }
+            </table>
+        }
+    </div>
+    @Html.PagedListPager((IPagedList)Model, sayfa => Url.Action("Index", new { sayfa }))
+</div>
+

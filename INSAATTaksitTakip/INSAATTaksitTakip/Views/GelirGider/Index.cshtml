@@ -1,0 +1,69 @@
+﻿@using INSAATTaksitTakip.Models
+@using PagedList;
+@using PagedList.Mvc;
+@model PagedList.IPagedList<TBLGELIR_GIDER>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_YonetimLayout.cshtml";
+    string ara = "";
+    if (Request["ara"] != null)
+    {
+        ara = Request["ara"].ToString();
+    }
+}
+<script>
+
+    function Silsinmi() {
+        var sil = confirm("Silinsin mi?");
+        return sil;
+    }
+</script>
+<div class="item  col-md-9 offset-md-2 col-xs-9 offset-xs-2 col-sm-9 offset-sm-2">
+    <div id="liste" class="table-responsive ">
+        <div id="searchbar" style="margin-top:10px; margin-bottom:10px;">
+            <form id="frm1" method="post" action="~/Yonetim/GelirGider/Ara" class="form-inline">
+                <input class="form-control mr-sm-2" id="txtAra" name="txtAra" value="@ara" type="search" placeholder="İsim giriniz.." aria-label="Search">
+                <button class="btn btn-secondary my-2 my-sm-0" type="submit">ARA</button>
+                <a href="~/Yonetim/GelirGider/KayitFormu/-1" class="btn btn-outline-success">Yeni Gelir/Gider Ekle</a>
+                <a href="~/Yonetim/GelirGiderTipleri/Index" class="btn btn-outline-success">Gelir/Gider Adı Ekle</a>
+            </form>
+        </div>
+        @{
+            <table class="table table-striped table-hover table-bordered">
+                <tr>
+                    <th>Sil</th>
+                    <th>Düzenle</th>
+                    <th>Gelir/Gider Tipi</th>
+                    <th>Gelir/Gider Türü</th>
+                    <th>Borç Tutarı</th>
+                    <th>Alacak Tutarı</th>
+                    <th>Açıklama</th>
+                </tr>
+                @for (int i = 0; i < Model.Count; i++)
+                {
+                    <tr>
+                        <td><a class="btn btn-danger" onclick="return Silsinmi()" href="~/Yonetim/GelirGider/Sil/@Model[i].GELIR_GIDER_REFNO">SİL</a></td>
+                        <td><a class="btn btn-primary" href="~/Yonetim/GelirGider/KayitFormu/@Model[i].GELIR_GIDER_REFNO">DÜZENLE</a></td>
+                        <td>@Model[i].TBLGG_TIPI.GG_TIPI_ADI</td>
+                        @if (@Model[i].GELIR_GIDER_TURU)
+                        {
+                            <td>Gelir/Alacak</td>
+                        }
+                        else
+                        {
+                            <td>Gider/Borç</td>
+                        }
+                        <td>@Model[i].BORC</td>
+                        <td>@Model[i].ALACAK</td>
+                        <td>@Model[i].ACIKLAMA</td>
+
+                    </tr>
+                }
+            </table>
+
+        }
+
+    </div>
+    @Html.PagedListPager((IPagedList)Model, sayfa => Url.Action("Index", new { sayfa }))
+</div>
+

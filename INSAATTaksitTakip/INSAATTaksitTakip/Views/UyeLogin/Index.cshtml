@@ -1,0 +1,45 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_YonetimLayout.cshtml";
+}
+
+
+
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Untitled Document</title>
+</head>
+
+<body class="" style="background-size:cover;background-image:url('../../resimler/arkaplan/2.jpg'); background-repeat:no-repeat;">
+    <div class="offset-md-3" style="z-index: 2;
+        margin-top: 200px;
+        font-size: 40px;
+        color:#000000;
+    ">
+        <div id="clock"></div>
+        <script type="text/javascript">
+            function refrClock() {
+                var d = new Date();
+                var s = d.getSeconds();
+                var m = d.getMinutes();
+                var h = d.getHours();
+                var day = d.getDay();
+                var date = d.getDate();
+                var month = d.getMonth();
+                var year = d.getFullYear();
+                var days = new Array("Pazar", "Pazartesi", "Salı", "Çarşamba", "Perşembe", "Cuma", "Cumartesi");
+                var months = new Array("Ocak", "Şubat", "Mart", "Nisan", "Mayıs", "Haziran", "Temmuz", "Ağustos", "Eylül", "Ekim", "Kasım", "Aralık");
+                if (s < 10) { s = "0" + s }
+                if (m < 10) { m = "0" + m }
+                document.getElementById("clock").innerHTML = "<b>Tarih:</b> " + date + " " + months[month] + " " + year + " | <b>Günlerden:</b> " + days[day] + " | <b>Saat:</b> " + h + ":" + m + ":" + s + " "
+                setTimeout("refrClock()", 1000);
+            }
+            refrClock();
+        </script>
+    </div>
+</body>
+</html>
+

@@ -1,0 +1,140 @@
+﻿@using INSAATTaksitTakip.Models
+@model TBLUYELER
+@{
+    ViewBag.Title = "KayitFormu";
+    Layout = "~/Views/Shared/_YonetimLayout.cshtml";
+    List<TBLSEHIRLER> il = ViewData["il"] as List<TBLSEHIRLER>;
+    List<TBLILCELER> ilce = ViewData["ilce"] as List<TBLILCELER>;
+}
+
+<script>
+    $().ready(function () {
+        $("#SEHIR_REFNO").change(function () {
+            @{var ilcerefnorazor = -1;}
+
+
+            @if (Model!=null && Model.ILCE_REFNO != null)
+            {
+
+                    ilcerefnorazor = Model.ILCE_REFNO ?? -1;
+
+
+            }
+
+            var ilcerefno=@ilcerefnorazor;
+
+                $.ajax(
+                {
+                    url: "/Yonetim/Uyeler/Ilce",
+                    data: "sehirrefno=" + $("#SEHIR_REFNO").val(),
+                    dataType: "json",
+                    type: "GET",
+                    success: function (veri) {
+                        //debugger;
+                        $("#ILCE_REFNO").html(""); // Alt Kategori Combobox'ın optionlarını temizler.
+                        for (var i = 0; i < veri.length; i++) {
+
+
+                                if (ilcerefno == parseInt(veri[i]["ILCE_REFNO"])) {
+                                    var opt = "<option selected value='" + veri[i]["ILCE_REFNO"] + "'>"
+                                        + veri[i]["ILCE_ADI"] + "</option>";
+                                }
+                                else {
+                                    // <option> value='ID'> Görünecek Ad </option>
+                                    var opt = "<option value='" + veri[i]["ILCE_REFNO"] + "'>"
+                                        + veri[i]["ILCE_ADI"] + "</option>";
+                                }
+
+
+
+                            $("#ILCE_REFNO").append(opt);
+                            // <select id='ALT_KATEGORI_REFNO' name='Alt_Kategori'>
+                             // optionlar buraya geliyo. <option> </option>
+                            //</select>
+                        }
+                    },
+                    error: function (hata) {
+                        alert(hata.statusText);
+                    }
+                });
+        });
+
+        $("#SEHIR_REFNO").change();//kod ile chanege olayı tetikleniyor
+    });
+</script>
+<div class="item  col-md-9 offset-md-2 col-xs-9 offset-xs-2 col-sm-9 offset-sm-2">
+    <div id="kayit" style="align-items:center;">
+        <form id="frm1" method="post" action="~/Yonetim/UYELER/KayitFormu" class="form-horizontal" style="margin-top:10px;" enctype="multipart/form-data">
+
+            <input type="hidden" name="UYE_REFNO" value="@Model.UYE_REFNO" />
+            <div class="form-group row">
+                <div class="col-sm-2 ">Üye Adı</div>
+                <div class="col-sm-10">
+                    <input class="form-control" type="text" required value="@Model.UYE_AD" maxlength="50" name="UYE_AD" id="UYE_AD" />
+                    @Html.ValidationMessageFor(m => m.UYE_AD, "", new { @style = "color:green" })
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-sm-2 ">Üye Soyadı</div>
+                <div class="col-sm-10">
+                    <input class="form-control" type="text" required value="@Model.UYE_SOYAD" maxlength="50" name="UYE_SOYAD" id="UYE_SOYAD" />
+                    @Html.ValidationMessageFor(m => m.UYE_SOYAD, "", new { @style = "color:green" })
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-sm-2 ">Cep Telefonu</div>
+                <div class="col-sm-10"><input class="form-control" type="tel" maxlength="11" required value="@Model.UYE_TELEFON" name="UYE_TELEFON" id="UYE_TELEFON" /></div>
+            </div>
+            <div class="form-group row">
+                <div class="col-sm-2 ">E-Mail</div>
+                <div class="col-sm-10"><input class="form-control" type="email" value="@Model.UYE_MAIL" maxlength="50" name="UYE_MAIL" id="UYE_MAIL" /></div>
+            </div>
+            <div class="form-group row">
+                <div class="col-sm-2 ">Adres</div>
+                <div class="col-sm-10">
+                    @Html.TextAreaFor(m => m.UYE_ADRES, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(m => m.UYE_ADRES, "", new { @style = "color:green" })
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <div class="col-sm-2 ">Şehir Seçiniz</div>
+                <div class="col-sm-10">
+                    @*@Html.DropDownListFor(m => m.TBLSEHIRLER.SEHIR_REFNO, (List<SelectListItem>)ViewBag.il, new { @class = "form-control" })*@
+                    <select class="form-control" name="SEHIR_REFNO" id="SEHIR_REFNO">
+                        @for (int i = 0; i < il.Count; i++)
+                        {
+                            if (il[i].SEHIR_REFNO == Model.SEHIR_REFNO)
+                            {
+                                <option selected value="@il[i].SEHIR_REFNO">@il[i].SEHIR_ADI</option>
+                            }
+                            else
+                            {
+                                <option value="@il[i].SEHIR_REFNO">@il[i].SEHIR_ADI</option>
+                            }
+
+                        }
+                    </select>
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-sm-2 ">İlçe Seçiniz</div>
+                <div class="col-sm-10">
+                    <select class="form-control" name="ILCE_REFNO" id="ILCE_REFNO">
+                    </select>
+                    @*@Html.DropDownListFor(m => m.TBLILCELER.ILCE_REFNO, (List<SelectListItem>)ViewBag.ilce, new { @class = "form-control" })*@
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-sm-2 ">Parola</div>
+                <div class="col-sm-10"><input class="form-control" type="password" maxlength="50" value="@Model.PAROLA" name="PAROLA" id="PAROLA" /></div>
+            </div>
+            <div class="form-group">
+                <div style="align-items:center;">
+                    <input class="btn btn-primary" type="submit" value="Kaydet" />
+                    <a href="~/Yonetim/Uyeler/Index" class="btn btn-warning">Vazgeç</a>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

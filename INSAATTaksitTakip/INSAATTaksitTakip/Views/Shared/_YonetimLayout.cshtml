@@ -1,0 +1,147 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title -İNŞAAT TAKSİT TAKİP SİSTEMİ</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+
+<script src="~/Scripts/bootstrap.js"></script>
+    <script src="~/Scripts/jquery-3.5.0.js"></script>
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+
+    <link href="~/Content/YonetimStyle.css" rel="stylesheet" />
+    <script>
+        $(document).ready(function () {
+            $(".right_menu li .fas").click(function () {
+                $(".profile_dd").toggleClass("active");
+            });
+            $(".hamburger").click(function () {
+                $(".wrapper").toggleClass("active");
+            });
+        })
+    </script>
+</head>
+<body >
+
+    <script src="https://kit.fontawesome.com/b99e675b6e.js"></script>
+
+    <div class="wrapper">
+        <div class="top_navbar col-sm-12 col-md-12 col-xs-12">
+            <div class="hamburger">
+                <div class="hamburger__inner">
+                    <div class="one"></div>
+                    <div class="two"></div>
+                    <div class="three"></div>
+                </div>
+            </div>
+            <div class="menu">
+                <div class="logo">
+                    YÖNETİM PANELİ
+                </div>
+                <div class="right_menu">
+                    <ul>
+                        <li>
+                            <i class="fas fa-user"></i>
+                            <div class="profile_dd">
+                                <div class="dd_item">Profil</div>
+                                <div class="dd_item">Şifre Değiştir</div>
+                                <div class="dd_item">@Html.ActionLink("Çıkış Yap", "LogOut", "Account")</div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="main_container">
+            <div class="sidebar col-sm-4 col-md-4 col-xs-4">
+                <div class="sidebar__inner">
+                    <div class="profile">
+                        <div class="img">
+
+                            <img src="~/resimler/woman.png" alt="profile_pic" />
+
+                        </div>
+                        <div class="profile_info">
+                            <p>Hoşgeldin</p>
+                            <br />
+                            <p>@User.Identity.Name</p>
+                            <p class="profile_name">Yönetim Paneli</p>
+                        </div>
+                    </div>
+                    <ul>
+                        <li>
+                            <a href="~/Yonetim/Uyeler/Index" class="active">
+                                <span class="icon"><i class="fas fa-users"></i></span>
+                                <span class="title">Üyeler</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="~/Yonetim/Projeler/Index">
+                                <span class="icon"><i class="fas fa-file-powerpoint"></i></span>
+                                <span class="title">Projeler</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <span class="icon"><i class="fab fa-elementor"></i></span>
+                                <span class="title">Hareketler/Kasa Giriş-Çıkış</span>
+
+                            </a>
+                        </li>
+                        <li>
+                            <a href="~/Yonetim/Sayfa/Index">
+                                <span class="icon"><i class="fas fa-chart-pie"></i></span>
+                                <span class="title">Sayfalar</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="~/Yonetim/AcikPozisyonlar/Index">
+                                <span class="icon"><i class="fas fa-border-all"></i></span>
+                                <span class="title">Açık Pozisyonlar/Başvurular</span>
+
+
+                            </a>
+                        </li>
+                        <li>
+                            <a href="~/Yonetim/Kullanicilar/Index">
+                                <span class="icon"><i class="fas fa-user-tag"></i></span>
+                                <span class="title">Kullanıcılar</span>
+                            </a>
+                        </li>
+                        
+                        <li>
+                            <a href="~/Yonetim/Basın/Index">
+                                <span class="icon"><i class="fas fa-newspaper"></i></span>
+                                <span class="title">Basın</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="~/Yonetim/Referanslar/Index">
+                                <span class="icon"><i class="fas fa-registered"></i></span>
+                                <span class="title">Referanslar</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="container col-sm-6 col-xs-6 col-md-6 offset-sm-2 offset-xs-2 offset-md-2">
+
+
+        </div>
+    </div>
+
+    <div>
+        @RenderBody();
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>

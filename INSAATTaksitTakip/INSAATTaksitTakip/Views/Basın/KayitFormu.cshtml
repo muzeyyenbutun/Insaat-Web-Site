@@ -1,0 +1,53 @@
+﻿@using INSAATTaksitTakip.Models
+@model TBLBASIN
+@{
+    ViewBag.Title = "KayitFormu";
+    Layout = "~/Views/Shared/_YonetimLayout.cshtml";
+}
+<script type="text/javascript" src="@Url.Content("~/ckeditor/ckeditor.js")"></script>
+<script type="text/javascript" src="@Url.Content("~/ckfinder/ckfinder.js")"></script>
+<div class="item  col-md-9 offset-md-2 col-xs-9 offset-xs-2 col-sm-9 offset-sm-2">
+    <div id="kayit" style="align-items:center;">
+        <form id="frm1" method="post" action="~/Yonetim/Basın/KayitFormu" class="form-horizontal" style="margin-top:10px;" enctype="multipart/form-data">
+            <input type="hidden" name="BASIN_REFNO" value="@Model.BASIN_REFNO" />
+            <div class="form-group row">
+                <div class="col-sm-2 ">Başlık</div>
+                <div class="col-sm-10">
+                    <input class="form-control" type="text" required value="@Model.BASLIK" maxlength="50" name="BASLIK" id="BASLIK" />
+                    @Html.ValidationMessageFor(m => m.BASLIK, "", new { @style = "color:green" })
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-sm-2 ">İçerik</div>
+                <div class="col-sm-10">
+                    @Html.TextAreaFor(m => m.ICERIK, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(m => m.ICERIK, "", new { @style = "color:green" })
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-sm-2 ">Medya</div>
+                <div class="col-sm-10 ">
+
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-sm-2 ">Basın Tarihi</div>
+                <div class="col-sm-10">
+                    <input class="form-control" type="date" value="@Model.TARIH" name="TARIH" id="TARIH" />
+                </div>
+            </div>
+            <div class="form-group">
+                <div style="align-items:center;">
+                    <input class="btn btn-primary" type="submit" value="Kaydet" />
+                    <a href="~/Yonetim/Basın/Index" class="btn btn-warning">Vazgeç</a>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+<script type="text/javascript">
+    CKEDITOR.replace('ICERIK');
+    CKFinder.setupCKEditor(null, '/ckfinder/');
+</script>
+
+

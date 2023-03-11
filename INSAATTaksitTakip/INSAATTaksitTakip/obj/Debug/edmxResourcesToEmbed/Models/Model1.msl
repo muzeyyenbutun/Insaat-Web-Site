@@ -1,0 +1,205 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="INSAATBITIRMEModelStoreContainer" CdmEntityContainer="INSAATBITIRMEEntities2">
+    <EntitySetMapping Name="sysdiagrams">
+      <EntityTypeMapping TypeName="INSAATBITIRMEModel.sysdiagrams">
+        <MappingFragment StoreEntitySet="sysdiagrams">
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+          <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+          <ScalarProperty Name="version" ColumnName="version" />
+          <ScalarProperty Name="definition" ColumnName="definition" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TBLACIKPOZISYONLAR">
+      <EntityTypeMapping TypeName="INSAATBITIRMEModel.TBLACIKPOZISYONLAR">
+        <MappingFragment StoreEntitySet="TBLACIKPOZISYONLAR">
+          <ScalarProperty Name="POZISYON_REFNO" ColumnName="POZISYON_REFNO" />
+          <ScalarProperty Name="POZISYON_ADI" ColumnName="POZISYON_ADI" />
+          <ScalarProperty Name="POZISYON_DETAYI" ColumnName="POZISYON_DETAYI" />
+          <ScalarProperty Name="POZISYON_DURUMU" ColumnName="POZISYON_DURUMU" />
+          <ScalarProperty Name="TARIH" ColumnName="TARIH" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TBLBASIN">
+      <EntityTypeMapping TypeName="INSAATBITIRMEModel.TBLBASIN">
+        <MappingFragment StoreEntitySet="TBLBASIN">
+          <ScalarProperty Name="BASIN_REFNO" ColumnName="BASIN_REFNO" />
+          <ScalarProperty Name="BASLIK" ColumnName="BASLIK" />
+          <ScalarProperty Name="ICERIK" ColumnName="ICERIK" />
+          <ScalarProperty Name="MEDYA" ColumnName="MEDYA" />
+          <ScalarProperty Name="TARIH" ColumnName="TARIH" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TBLGELIR_GIDER">
+      <EntityTypeMapping TypeName="INSAATBITIRMEModel.TBLGELIR_GIDER">
+        <MappingFragment StoreEntitySet="TBLGELIR_GIDER">
+          <ScalarProperty Name="GELIR_GIDER_REFNO" ColumnName="GELIR_GIDER_REFNO" />
+          <ScalarProperty Name="GG_TIPI_REFNO" ColumnName="GG_TIPI_REFNO" />
+          <ScalarProperty Name="GELIR_GIDER_TURU" ColumnName="GELIR_GIDER_TURU" />
+          <ScalarProperty Name="BORC" ColumnName="BORC" />
+          <ScalarProperty Name="ALACAK" ColumnName="ALACAK" />
+          <ScalarProperty Name="ACIKLAMA" ColumnName="ACIKLAMA" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TBLGENELBASVURU">
+      <EntityTypeMapping TypeName="INSAATBITIRMEModel.TBLGENELBASVURU">
+        <MappingFragment StoreEntitySet="TBLGENELBASVURU">
+          <ScalarProperty Name="BASVURU_REFNO" ColumnName="BASVURU_REFNO" />
+          <ScalarProperty Name="BASVURAN_ADI" ColumnName="BASVURAN_ADI" />
+          <ScalarProperty Name="BASVURAN_SOYADI" ColumnName="BASVURAN_SOYADI" />
+          <ScalarProperty Name="BASVURAN_OKUL" ColumnName="BASVURAN_OKUL" />
+          <ScalarProperty Name="BASVURAN_EHLIYET" ColumnName="BASVURAN_EHLIYET" />
+          <ScalarProperty Name="DOSYA_ADI" ColumnName="DOSYA_ADI" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TBLGG_TIPI">
+      <EntityTypeMapping TypeName="INSAATBITIRMEModel.TBLGG_TIPI">
+        <MappingFragment StoreEntitySet="TBLGG_TIPI">
+          <ScalarProperty Name="GG_TIPI_REFNO" ColumnName="GG_TIPI_REFNO" />
+          <ScalarProperty Name="GG_TIPI_ADI" ColumnName="GG_TIPI_ADI" />
+          <ScalarProperty Name="GG_TURU" ColumnName="GG_TURU" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TBLILCELER">
+      <EntityTypeMapping TypeName="INSAATBITIRMEModel.TBLILCELER">
+        <MappingFragment StoreEntitySet="TBLILCELER">
+          <ScalarProperty Name="ILCE_REFNO" ColumnName="ILCE_REFNO" />
+          <ScalarProperty Name="ILCE_ADI" ColumnName="ILCE_ADI" />
+          <ScalarProperty Name="SEHIR_REFNO" ColumnName="SEHIR_REFNO" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TBLKULLANICILAR">
+      <EntityTypeMapping TypeName="INSAATBITIRMEModel.TBLKULLANICILAR">
+        <MappingFragment StoreEntitySet="TBLKULLANICILAR">
+          <ScalarProperty Name="KULLANICI_REFNO" ColumnName="KULLANICI_REFNO" />
+          <ScalarProperty Name="KULLANICI_ADI" ColumnName="KULLANICI_ADI" />
+          <ScalarProperty Name="KULLANICI_SIFRE" ColumnName="KULLANICI_SIFRE" />
+          <ScalarProperty Name="KULLANICI_DURUMU" ColumnName="KULLANICI_DURUMU" />
+          <ScalarProperty Name="KULLNICI_TIPI_REFNO" ColumnName="KULLNICI_TIPI_REFNO" />
+          <ScalarProperty Name="MAIL" ColumnName="MAIL" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TBLKULLANICITIPLERI">
+      <EntityTypeMapping TypeName="INSAATBITIRMEModel.TBLKULLANICITIPLERI">
+        <MappingFragment StoreEntitySet="TBLKULLANICITIPLERI">
+          <ScalarProperty Name="KULLANICI_TIPI_REFNO" ColumnName="KULLANICI_TIPI_REFNO" />
+          <ScalarProperty Name="KULLANICI_TIPI_ADI" ColumnName="KULLANICI_TIPI_ADI" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TBLMESAJLAR">
+      <EntityTypeMapping TypeName="INSAATBITIRMEModel.TBLMESAJLAR">
+        <MappingFragment StoreEntitySet="TBLMESAJLAR">
+          <ScalarProperty Name="MESAJ_REFNO" ColumnName="MESAJ_REFNO" />
+          <ScalarProperty Name="AD_SOYAD" ColumnName="AD_SOYAD" />
+          <ScalarProperty Name="TELEFON" ColumnName="TELEFON" />
+          <ScalarProperty Name="MAIL" ColumnName="MAIL" />
+          <ScalarProperty Name="BASLIK" ColumnName="BASLIK" />
+          <ScalarProperty Name="ICERIK" ColumnName="ICERIK" />
+          <ScalarProperty Name="UYE_REFNO" ColumnName="UYE_REFNO" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TBLPROJELER">
+      <EntityTypeMapping TypeName="INSAATBITIRMEModel.TBLPROJELER">
+        <MappingFragment StoreEntitySet="TBLPROJELER">
+          <ScalarProperty Name="PROJE_REFNO" ColumnName="PROJE_REFNO" />
+          <ScalarProperty Name="PROJE_ADI" ColumnName="PROJE_ADI" />
+          <ScalarProperty Name="BASLAMA_TARIHI" ColumnName="BASLAMA_TARIHI" />
+          <ScalarProperty Name="BITIS_TARIHI" ColumnName="BITIS_TARIHI" />
+          <ScalarProperty Name="KONUMU" ColumnName="KONUMU" />
+          <ScalarProperty Name="SEHIR_REFNO" ColumnName="SEHIR_REFNO" />
+          <ScalarProperty Name="ILCE_REFNO" ColumnName="ILCE_REFNO" />
+          <ScalarProperty Name="TAMAMLANMA_DURUMU" ColumnName="TAMAMLANMA_DURUMU" />
+          <ScalarProperty Name="ACIKLAMA" ColumnName="ACIKLAMA" />
+          <ScalarProperty Name="MEDYA" ColumnName="MEDYA" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TBLREFERANSLAR">
+      <EntityTypeMapping TypeName="INSAATBITIRMEModel.TBLREFERANSLAR">
+        <MappingFragment StoreEntitySet="TBLREFERANSLAR">
+          <ScalarProperty Name="REFERANS_REFNO" ColumnName="REFERANS_REFNO" />
+          <ScalarProperty Name="MEDYA" ColumnName="MEDYA" />
+          <ScalarProperty Name="ACIKLAMA" ColumnName="ACIKLAMA" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TBLSAYFA">
+      <EntityTypeMapping TypeName="INSAATBITIRMEModel.TBLSAYFA">
+        <MappingFragment StoreEntitySet="TBLSAYFA">
+          <ScalarProperty Name="SAYFA_REFNO" ColumnName="SAYFA_REFNO" />
+          <ScalarProperty Name="ADI" ColumnName="ADI" />
+          <ScalarProperty Name="ICERIK" ColumnName="ICERIK" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TBLSEHIRLER">
+      <EntityTypeMapping TypeName="INSAATBITIRMEModel.TBLSEHIRLER">
+        <MappingFragment StoreEntitySet="TBLSEHIRLER">
+          <ScalarProperty Name="SEHIR_REFNO" ColumnName="SEHIR_REFNO" />
+          <ScalarProperty Name="SEHIR_ADI" ColumnName="SEHIR_ADI" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TBLUYE_HAREKET">
+      <EntityTypeMapping TypeName="INSAATBITIRMEModel.TBLUYE_HAREKET">
+        <MappingFragment StoreEntitySet="TBLUYE_HAREKET">
+          <ScalarProperty Name="UYE_HAR_REFNO" ColumnName="UYE_HAR_REFNO" />
+          <ScalarProperty Name="UYE_PROJE_REFNO" ColumnName="UYE_PROJE_REFNO" />
+          <ScalarProperty Name="BORC" ColumnName="BORC" />
+          <ScalarProperty Name="ALACAK" ColumnName="ALACAK" />
+          <ScalarProperty Name="TARIH" ColumnName="TARIH" />
+          <ScalarProperty Name="ACIKLAMA" ColumnName="ACIKLAMA" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TBLUYE_PROJE">
+      <EntityTypeMapping TypeName="INSAATBITIRMEModel.TBLUYE_PROJE">
+        <MappingFragment StoreEntitySet="TBLUYE_PROJE">
+          <ScalarProperty Name="UYE_PROJE_REFNO" ColumnName="UYE_PROJE_REFNO" />
+          <ScalarProperty Name="UYE_REFNO" ColumnName="UYE_REFNO" />
+          <ScalarProperty Name="PROJE_REFNO" ColumnName="PROJE_REFNO" />
+          <ScalarProperty Name="PESINAT" ColumnName="PESINAT" />
+          <ScalarProperty Name="TOPLAM_TUTAR" ColumnName="TOPLAM_TUTAR" />
+          <ScalarProperty Name="TAKSIT_SAYISI" ColumnName="TAKSIT_SAYISI" />
+          <ScalarProperty Name="AYLIK_TUTAR" ColumnName="AYLIK_TUTAR" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TBLUYELER">
+      <EntityTypeMapping TypeName="INSAATBITIRMEModel.TBLUYELER">
+        <MappingFragment StoreEntitySet="TBLUYELER">
+          <ScalarProperty Name="UYE_REFNO" ColumnName="UYE_REFNO" />
+          <ScalarProperty Name="UYE_AD" ColumnName="UYE_AD" />
+          <ScalarProperty Name="UYE_SOYAD" ColumnName="UYE_SOYAD" />
+          <ScalarProperty Name="UYE_ADRES" ColumnName="UYE_ADRES" />
+          <ScalarProperty Name="UYE_TELEFON" ColumnName="UYE_TELEFON" />
+          <ScalarProperty Name="SEHIR_REFNO" ColumnName="SEHIR_REFNO" />
+          <ScalarProperty Name="ILCE_REFNO" ColumnName="ILCE_REFNO" />
+          <ScalarProperty Name="UYE_MAIL" ColumnName="UYE_MAIL" />
+          <ScalarProperty Name="PAROLA" ColumnName="PAROLA" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TBLLOGIN">
+      <EntityTypeMapping TypeName="INSAATBITIRMEModel.TBLLOGIN">
+        <MappingFragment StoreEntitySet="TBLLOGIN">
+          <ScalarProperty Name="LOGIN_TEL" ColumnName="LOGIN_TEL" />
+          <ScalarProperty Name="LOGIN_MAIL" ColumnName="LOGIN_MAIL" />
+          <ScalarProperty Name="LOGIN_FULLNAME" ColumnName="LOGIN_FULLNAME" />
+          <ScalarProperty Name="LOGIN_REFNO" ColumnName="LOGIN_REFNO" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

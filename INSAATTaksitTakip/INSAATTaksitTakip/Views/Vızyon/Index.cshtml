@@ -1,0 +1,9 @@
+﻿@model INSAATTaksitTakip.Models.TBLSAYFA
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div>
+    @Html.Raw(HttpUtility.HtmlDecode(Model.ICERIK))
+</div>
+

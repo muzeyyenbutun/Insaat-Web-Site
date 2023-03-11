@@ -1,0 +1,79 @@
+﻿@using INSAATTaksitTakip.Models
+@model TBLKULLANICILAR
+@{
+    ViewBag.Title = "KayitFormu";
+    Layout = "~/Views/Shared/_YonetimLayout.cshtml";
+    var kultipi = ViewData["kultipi"] as List<INSAATTaksitTakip.Models.TBLKULLANICITIPLERI>;
+}
+
+
+<div class="item  col-md-9 offset-md-2 col-xs-9 offset-xs-2 col-sm-9 offset-sm-2">
+    <div id="kayit" style="align-items:center;">
+        <form id="frm1" method="post" action="~/Yonetim/Kullanicilar/KayitFormu" class="form-horizontal" style="margin-top:10px;">
+            <div class="form-group row">
+                <div class="col-sm-2">Kullanıcı Refno</div>
+                <div class="col-sm-10"><input class="form-control" type="text" name="KULLANICI_REFNO" id="SAYFA_REFNO" value="@Model.KULLANICI_REFNO" /></div>
+            </div>
+            <div class="form-group row">
+                <div class="col-sm-2">Kullanıcı Adı</div>
+                <div class="col-sm-10">
+                    <input class="form-control" type="text" name="KULLANICI_ADI" id="KULLANICI_ADI" value="@Model.KULLANICI_ADI" />
+                    @Html.ValidationMessageFor(m => m.KULLANICI_ADI, "", new { @style = "color:green" })
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-sm-2">Kullanıcı Şifre</div>
+                <div class="col-sm-10">
+                    <input class="form-control" type="password" name="KULLANICI_SIFRE" id="KULLANICI_SIFRE" value="@Model.KULLANICI_SIFRE" />
+                    @Html.ValidationMessageFor(m => m.KULLANICI_SIFRE, "", new { @style = "color:green" })
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-sm-2 ">Kullanıcı Durumu</div>
+                <div class="col-sm-10">
+                    Aktif
+                    @Html.RadioButtonFor(model => model.KULLANICI_DURUMU, "True")
+                    Pasif
+                    @Html.RadioButtonFor(model => model.KULLANICI_DURUMU, "False")
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-sm-2">Kullanıcı Tipi</div>
+                <div class="col-sm-10">
+                     <select name="KULLNICI_TIPI_REFNO" id="KULLNICI_TIPI_REFNO" class="form-control">
+                        @for (int i = 0; i < kultipi.Count; i++)
+                        {
+                            if (kultipi[i].KULLANICI_TIPI_REFNO == Model.KULLNICI_TIPI_REFNO)
+                            {
+                                <option selected value="@kultipi[i].KULLANICI_TIPI_REFNO">@kultipi[i].KULLANICI_TIPI_ADI</option>
+                            }
+                            else
+                            {
+                                <option value="@kultipi[i].KULLANICI_TIPI_REFNO">@kultipi[i].KULLANICI_TIPI_ADI</option>
+                            }
+                        }
+                    </select>
+                    @Html.ValidationMessageFor(m => m.KULLNICI_TIPI_REFNO, "", new { @style = "color:green" })
+                </div>
+            </div>
+             <div class="form-group row">
+                <div class="col-sm-2">Mail</div>
+                <div class="col-sm-10">
+                    <input class="form-control" type="email" name="MAIL" id="MAIL" value="@Model.MAIL" />
+                    @Html.ValidationMessageFor(m => m.MAIL, "", new { @style = "color:green" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div style="align-items:center;">
+                    <input class="btn btn-primary" type="submit" value="Kaydet" />
+                    <a href="~/Yonetim/Kullanicilar/Index" class="btn btn-warning">Vazgeç</a>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+
+

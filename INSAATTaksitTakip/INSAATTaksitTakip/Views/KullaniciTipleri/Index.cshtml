@@ -1,0 +1,74 @@
+﻿@using INSAATTaksitTakip.Models
+@using PagedList;
+@using PagedList.Mvc;
+@model PagedList.IPagedList<TBLKULLANICITIPLERI>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_YonetimLayout.cshtml";
+   
+    string ara = "";
+    if (Request["ara"] != null)
+    {
+        ara = Request["ara"].ToString();
+    }
+}
+<script>
+
+    function Silsinmi() {
+        var sil = confirm("Silinsin mi?");
+        return sil;
+    }
+</script>
+<div class="item  col-md-9 offset-md-2 col-xs-9 offset-xs-2 col-sm-9 offset-sm-2">
+    <div id="liste" class="table-responsive ">
+        <div id="searchbar" style="margin-top:10px; margin-bottom:10px;">
+            <form id="frm1" method="post" action="~/Yonetim/KullaniciTipleri/Ara" class="form-inline">
+                <input class="form-control mr-sm-2" id="txtAra" name="txtAra" value="@ara" type="search" placeholder="Kullanıcı Tipi adı giriniz.." aria-label="Search">
+                <button class="btn btn-secondary my-2 my-sm-0" type="submit">ARA</button>
+                <button type="button" class="btn btn-outline-success" data-toggle="modal" data-target="#Modal1">Yeni</button>
+            </form>
+        </div>
+        @{
+            <table class="table table-striped table-hover table-bordered">
+                <tr>
+                    <th>Sil</th>
+                    <th>Düzenle</th>
+                    <th>Kullanıcı Tipi Adı</th>
+                    
+                </tr>
+                @for (int i = 0; i < Model.Count; i++)
+                {
+                    <tr>
+                        <td><a class="btn btn-danger" onclick="return Silsinmi()" href="~/Yonetim/KullaniciTipleri/Sil/@Model[i].KULLANICI_TIPI_REFNO">SİL</a></td>
+                        <td><a class="btn btn-primary" href="~/Yonetim/KullaniciTipleri/KayitFormu/@Model[i].KULLANICI_TIPI_REFNO">DÜZENLE</a></td>
+                        <td>@Model[i].KULLANICI_TIPI_ADI</td>
+                    </tr>
+                }
+            </table>
+            <div class="modal" id="Modal1">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h2 class="modal-title">Kullanıcı Tipi Girme Ekranı</h2>
+                        </div>
+                        <form method="post" action="/KullaniciTipleri/KayitFormu" class="form-group">
+                            <div class="modal-body ">
+                                <label>Kullanıcı Tipi Adı</label>
+                                <input type="text" name="KULLANICI_TIPI_ADI" class="form-control" />
+                            </div>
+                         
+                            <button type="submit" class="btn btn-info">Kaydet</button>
+                            <button type="button" class="btn btn-danger" data-dismiss="modal">Vazgeç</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+
+        }
+
+    </div>
+
+
+    @Html.PagedListPager((IPagedList)Model, sayfa => Url.Action("Index", new { sayfa }))
+</div>

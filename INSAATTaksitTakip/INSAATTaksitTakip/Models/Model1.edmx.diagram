@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="92ec7c2ab09e4dcfbcc885bb06cb6ddb" Name="Diagram1">
+        <EntityTypeShape EntityType="INSAATBITIRMEModel.sysdiagrams" Width="1.5" PointX="5.75" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="INSAATBITIRMEModel.TBLACIKPOZISYONLAR" Width="1.5" PointX="7.75" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="INSAATBITIRMEModel.TBLBASIN" Width="1.5" PointX="8.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="INSAATBITIRMEModel.TBLGELIR_GIDER" Width="1.5" PointX="9.75" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="INSAATBITIRMEModel.TBLGENELBASVURU" Width="1.5" PointX="5.75" PointY="10.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="INSAATBITIRMEModel.TBLGG_TIPI" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="INSAATBITIRMEModel.TBLILCELER" Width="1.5" PointX="0.75" PointY="4.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="INSAATBITIRMEModel.TBLKULLANICILAR" Width="1.5" PointX="3" PointY="8" IsExpanded="true" />
+        <EntityTypeShape EntityType="INSAATBITIRMEModel.TBLKULLANICITIPLERI" Width="1.5" PointX="0.75" PointY="8.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="INSAATBITIRMEModel.TBLMESAJLAR" Width="1.5" PointX="8.25" PointY="3.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="INSAATBITIRMEModel.TBLPROJELER" Width="1.5" PointX="3" PointY="3.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="INSAATBITIRMEModel.TBLREFERANSLAR" Width="1.5" PointX="4.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="INSAATBITIRMEModel.TBLSAYFA" Width="1.5" PointX="10.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="INSAATBITIRMEModel.TBLSEHIRLER" Width="1.5" PointX="0.75" PointY="1.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="INSAATBITIRMEModel.TBLUYE_HAREKET" Width="1.5" PointX="13.5" PointY="3.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="INSAATBITIRMEModel.TBLUYE_PROJE" Width="1.5" PointX="11.25" PointY="3.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="INSAATBITIRMEModel.TBLUYELER" Width="1.5" PointX="6" PointY="3.375" IsExpanded="true" />
+        <AssociationConnector Association="INSAATBITIRMEModel.FK_TBLPROJELER_TBLILCELER" ManuallyRouted="false" />
+        <AssociationConnector Association="INSAATBITIRMEModel.FK_TBLUYELER_TBLILCELER" ManuallyRouted="false" />
+        <AssociationConnector Association="INSAATBITIRMEModel.FK_TBLKULLANICILAR_TBLKULLANICITIPLERI" ManuallyRouted="false" />
+        <AssociationConnector Association="INSAATBITIRMEModel.FK_TBLMESAJLAR_TBLUYELER" ManuallyRouted="false" />
+        <AssociationConnector Association="INSAATBITIRMEModel.FK_TBLPROJELER_TBLSEHIRLER" ManuallyRouted="false" />
+        <AssociationConnector Association="INSAATBITIRMEModel.FK_TBLUYE_PROJE_TBLUYE_PROJE" ManuallyRouted="false" />
+        <AssociationConnector Association="INSAATBITIRMEModel.FK_TBLUYELER_TBLSEHIRLER" ManuallyRouted="false" />
+        <AssociationConnector Association="INSAATBITIRMEModel.FK_TBLUYE_HAREKET_TBLUYE_PROJE1" ManuallyRouted="false" />
+        <AssociationConnector Association="INSAATBITIRMEModel.FK_TBLUYE_PROJE_TBLUYELER" ManuallyRouted="false" />
+        <AssociationConnector Association="INSAATBITIRMEModel.FK_TBLGELIR_GIDER_TBLGG_TIPI" />
+        <AssociationConnector Association="INSAATBITIRMEModel.FK_TBLGG_TIPI_TBLGG_TIPI" />
+        <AssociationConnector Association="INSAATBITIRMEModel.FK_TBLPROJELER_TBLPROJELER" />
+        <EntityTypeShape EntityType="INSAATBITIRMEModel.TBLLOGIN" Width="1.5" PointX="0.75" PointY="11.75" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

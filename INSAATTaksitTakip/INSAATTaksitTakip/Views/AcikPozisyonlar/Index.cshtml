@@ -1,0 +1,66 @@
+﻿@using INSAATTaksitTakip.Models
+@using PagedList;
+@using PagedList.Mvc;
+@model PagedList.IPagedList<TBLACIKPOZISYONLAR>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_YonetimLayout.cshtml";
+    string ara = "";
+    if (Request["ara"] != null)
+    {
+        ara = Request["ara"].ToString();
+    }
+}
+<script>
+
+    function Silsinmi() {
+        var sil = confirm("Silinsin mi?");
+        return sil;
+    }
+</script>
+<div class="item  col-md-9 offset-md-2 col-xs-9 offset-xs-2 col-sm-9 offset-sm-2">
+    <div id="liste" class="table-responsive ">
+        <div id="searchbar" style="margin-top:10px; margin-bottom:10px;">
+            <form id="frm1" method="post" action="~/Yonetim/AcikPozisyonlar/Ara" class="form-inline">
+                <input class="form-control mr-sm-2" id="txtAra" name="txtAra" value="@ara" type="search" placeholder="Pozisyon adı giriniz.." aria-label="Search">
+                <button class="btn btn-secondary my-2 my-sm-0" type="submit">ARA</button>
+                <a href="~/Yonetim/AcikPozisyonlar/KayitFormu/-1" class="btn btn-outline-success">Yeni</a>
+            </form>
+        </div>
+        @{
+            <table class="table table-striped table-hover table-bordered">
+                <tr>
+                    <th>Sil</th>
+                    <th>Düzenle</th>
+                    <th>Pozisyon Adı</th>
+                    <th>Detay</th>
+                    <th>İlan Durumu</th>
+                    <th>İlan Tarihi</th>
+                </tr>
+                @for (int i = 0; i < Model.Count; i++)
+                {
+                    <tr>
+                        <td><a class="btn btn-danger" onclick="return Silsinmi()" href="~/Yonetim/AcikPozisyonlar/Sil/@Model[i].POZISYON_REFNO">SİL</a></td>
+                        <td><a class="btn btn-primary" href="~/Yonetim/AcikPozisyonlar/KayitFormu/@Model[i].POZISYON_REFNO">DÜZENLE</a></td>
+                        <td>@Model[i].POZISYON_ADI</td>
+                        <td>@Model[i].POZISYON_DETAYI</td>
+                        @if (@Model[i].POZISYON_DURUMU)
+                        {
+                            <td>Aktif</td>
+                        }
+                        else
+                        {
+                            <td>Pasif</td>
+                        }
+                        <td>@Model[i].TARIH</td>
+
+                    </tr>
+                }
+            </table>
+
+        }
+
+    </div>
+    @Html.PagedListPager((IPagedList)Model, sayfa => Url.Action("Index", new { sayfa }))
+</div>
+

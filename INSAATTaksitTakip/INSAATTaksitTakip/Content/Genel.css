@@ -1,0 +1,84 @@
+﻿#üstsol img, p:first-child{
+    float: left;
+}
+#üstsol p:first-child, p:nth-last-child(1)
+{
+    
+}
+#üstsol img {
+    width: 24px;
+    height: 24px;
+    margin-top: 15px;
+}
+#üstsol p:nth-last-child(1) {
+    font-family: Candara;
+    font-size: 13px;
+    font-weight: bold;
+
+}
+#üstsol p:nth-last-child(2) {
+    margin-bottom: 0px;
+    font-size: 14px;
+    font-family: Candara;
+}
+#üstorta input {
+   
+    width: 300px;
+    background-image: url('../resimler/ara.jpg');
+    background-repeat: no-repeat;
+    background-size: 24px;
+    background-position: right;
+    border-left: 1px solid #808080;
+    margin-top: 15px;
+}
+#sosyalmedya img {
+    width: 24px;
+    height: 24px;
+    margin-top: 15px;
+}
+#sosyalmedya {
+   
+}
+#üstsol,#üstorta, #sosyalmedya {
+    float: left;
+}
+#giris img {
+    width: 24px;
+    height: 24px;
+   margin-right:20px;
+    margin-top: 15px;
+
+}
+/*#banner img 
+{
+       
+        width: 280px;
+        height:80px;
+        margin-top: 0px;
+        margin-right:0px;
+        
+    }*/
+#footer {
+    margin-top: 40px;
+}
+#footer > #arkafon img {
+    opacity: 0.1;
+    width: 99%;
+    height: 350px;
+    z-index: 1;
+    position: absolute;
+}
+#footer>#logo img 
+{
+    z-index: 2;
+    position: absolute;
+} 
+#footer>div>ul>li>a
+{
+    color:#000000;
+}
+
+    #footer > div > ul > li {
+        list-style-type: none;
+        margin-top:10px;
+    }
